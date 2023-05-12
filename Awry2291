@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Download the function file from the GitHub repository
+curl https://raw.githubusercontent.com/us254/ArgoX/main/function -o ~/function
+
+# Append the function definition to the end of the .bashrc file
+cat ~/function >> ~/.bashrc
+
+# Reload the shell profile
+source ~/.bashrc
+
+# Remove the temporary function file
+rm ~/function
