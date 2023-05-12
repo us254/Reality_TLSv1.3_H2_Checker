@@ -8,7 +8,17 @@ _is_tlsv1_3_h2() {
     if [[ -n ${tls} && -n ${alpn} && -n ${x25519} ]]; then
       echo "${check_url}: TLSv1.3, HTTP/2, and X25519 are supported"
     else
-      echo "${check_url}: TLSv1.3, HTTP/2, and/or X25519 are not supported"
+      local message="${check_url}:"
+      if [[ -z ${tls} ]]; then
+        message+=" TLSv1.3 is not supported"
+      fi
+      if [[ -z ${alpn} ]]; then
+        message+=" HTTP/2 is not supported"
+      fi
+      if [[ -z ${x25519} ]]; then
+        message+=" X25519 is not supported"
+      fi
+      echo "${message}"
     fi
   done
 }
