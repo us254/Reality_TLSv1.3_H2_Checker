@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Download the function file from the GitHub repository
-curl https://raw.githubusercontent.com/us254/ArgoX/main/function -o ~/function
+curl https://raw.githubusercontent.com/us254/Anyplace1525/main/function -o ~/function
 
 # Append the function definition to the end of the .bashrc file
 cat ~/function >> ~/.bashrc
