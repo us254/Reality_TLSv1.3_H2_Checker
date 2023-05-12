@@ -1,6 +1,6 @@
 _is_tlsv1_3_h2() {
   for url in "${@}"; do
-    local check_url=$(echo "${url}" | grep -oE '[^/]+(\.[^/]+)+\b' | head -n 1)
+    local check_url=$(echo "${url}" | sed -e 's/https:\/\///' -e 's/http:\/\///' -e 's/\/.*//' | grep -oE '[^/]+\.[^/]+$' | head -n 1)
     local check_output=$(echo QUIT | stdbuf -oL openssl s_client -connect "${check_url}:443" -tls1_3 -alpn h2 -debug 2>&1)
     local tls=$(echo "${check_output}" | grep -Eoi 'TLSv1.[23]')
     local alpn=$(echo "${check_output}" | grep -Eoi '^ALPN\s+protocol:\s+h2$')
@@ -13,9 +13,15 @@ _is_tlsv1_3_h2() {
         message+=" TLSv1.3 is not supported"
       fi
       if [[ -z ${alpn} ]]; then
+        if [[ -n ${message} ]]; then
+          message+=","
+        fi
         message+=" HTTP/2 is not supported"
       fi
       if [[ -z ${x25519} ]]; then
+        if [[ -n ${message} ]]; then
+          message+=","
+        fi
         message+=" X25519 is not supported"
       fi
       echo "${message}"
