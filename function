@@ -1,7 +1,7 @@
 _is_tlsv1_3_h2() {
   local check_url=$(echo $1 | grep -oE '[^/]+(\.[^/]+)+\b' | head -n 1)
   echo "Checking protocols for ${check_url}..."
-  local check_output=$(echo QUIT | stdbuf -oL openssl s_client -connect "${check_url}:443" -tls1_3 >
+  local check_output=$(echo QUIT | stdbuf -oL openssl s_client -connect "${check_url}:443" -tls1_3 -alpn h2 -debug 2>&1)
   local tls=$(echo "${check_output}" | grep -Eoi 'TLSv1.[23]')
   local alpn=$(echo "${check_output}" | grep -Eoi '^ALPN\s+protocol:\s+h2$')
   local x25519=$(echo "${check_output}" | grep -Eoi '^Server\s+Temp\s+Key:\s+X25519')
