@@ -10,3 +10,4 @@ source ~/.bashrc
 _is_tlsv1_3_h2 yahoo.com google.com learn.microsoft.com
 
 ```
+openssl s_client -connect yahoo.com:443 </dev/null 2>/dev/null | openssl x509 -noout -text | grep DNS: | sed 's/[^ ]*DNS://g' | tr ',' '\n' | grep -v '*'
