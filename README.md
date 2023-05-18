@@ -7,7 +7,7 @@ curl https://raw.githubusercontent.com/us254/Anyplace1525/main/Awry2291 | bash
 
 source ~/.bashrc
 
-_is_tlsv1_3_h2 yahoo.com google.com learn.microsoft.com
+is_tlsv1_3_h2 yahoo.com google.com learn.microsoft.com
 
 ```
 `
