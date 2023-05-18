@@ -1,4 +1,4 @@
-_is_tlsv1_3_h2() {
+is_tlsv1_3_h2() {
   for url in "${@}"; do
     local check_url=$(echo "${url}" | sed -e 's/^https:\/\///' -e 's/^http:\/\///' -e 's/\/.*$//' 2>/dev/null | grep -oE '[^/]+\.[^/]+$' | head -n 1)
     local check_output=$(echo QUIT | stdbuf -oL openssl s_client -connect "${check_url}:443" -tls1_3 -alpn h2 -debug 2>&1)
