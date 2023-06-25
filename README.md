@@ -1,20 +1,84 @@
-# Anyplace1525
-TLSv1.3 and HTTP/2 Protocol Checker
-This repository contains a shell script that checks whether a website supports the TLSv1.3 protocol and the HTTP/2 protocol. The script uses the OpenSSL command-line tool to connect to the specified website and check its supported protocols. If the website supports TLSv1.3 and HTTP/2, the script outputs a success message. If not, the script outputs a failure message. The script also checks for the X25519 elliptic curve, which is recommended for use with TLSv1.3. The script can be easily modified to check multiple websites at once.
+## Code.sh
+
+This is a bash script that defines two functions: `check_url` and `is_tlsv1_3_h2`. These functions are used to check if a URL supports specific security protocols, such as TLS 1.3, HTTP/2, X25519 and OCSP. The functions use `parallel` to run the checks for multiple URLs in parallel and create a log file named `joblog.txt`.
+
+### Requirements
+
+- Bash
+- OpenSSL
+- Parallel
+
+### Usage
+
+To use this script, follow these steps:
+
+1. Download the code file from the address using `wget` or `curl`. For example, you can type:
 
 ```
-curl https://raw.githubusercontent.com/us254/Anyplace1525/main/Awry2291 | bash
-
-source ~/.bashrc
-
-is_tlsv1_3_h2 yahoo.com google.com learn.microsoft.com
+wget https://raw.githubusercontent.com/us254/Anyplace1525/main/Ravage3184 -O code.sh
+```
+Or:
 
 ```
-`
+curl -o code.sh https://raw.githubusercontent.com/us254/Anyplace1525/main/Ravage3184
+```
 
-To only show non-wildcard DNS names , you can use the following command:
+This will download the file to your current directory and name it `code.sh`.
+
+2. Make the script executable by using the `chmod` command. For example, you can type:
 
 ```
-openssl s_client -connect yahoo.com:443 </dev/null 2>/dev/null | openssl x509 -noout -text | grep DNS: | sed 's/[^ ]*DNS://g' | tr ',' '\n' | grep -v '*'
+chmod +x code.sh
+```
+
+This will give the file the execute permission.
+
+3. Install `parallel` on your system using your package manager or by downloading it from the website. For example, if you are using Debian/Ubuntu, you can type:
 
 ```
+sudo apt install parallel
+```
+
+This will install `parallel` from the official repository of your Linux distribution.
+
+4. Source the `code.sh` file to load the functions into your current shell session by running:
+
+```
+source code.sh
+```
+
+Or using the dot operator:
+
+```
+. code.sh
+```
+
+This will make the `check_url` and `is_tlsv1_3_h2` functions available in your current shell session.
+
+5. Run the `check_url` function to check a single URL by passing it as an argument. For example:
+
+```
+check_url https://www.cloudflare.com
+```
+
+This will print a message indicating if the URL supports TLS 1.3, HTTP/2, X25519 and OCSP.
+
+6. Run the `is_tlsv1_3_h2` function to check multiple URLs in parallel by passing them as arguments separated by spaces. For example:
+
+```
+is_tlsv1_3_h2 https://example.com https://google.com
+```
+
+This will print a message for each URL indicating if it supports TLS 1.3, HTTP/2, X25519 and OCSP. It will also create a log file named `joblog.txt` with information about each job.
+
+7. View the log file by running:
+
+```
+cat joblog.txt
+```
+
+This will print a line for each job with information such as the command, the exit code, and the output.
+
+### License
+
+This script is licensed under GNU GPL version 3 or later [https://gnu.org/licenses/gpl.html](https://gnu.org/licenses/gpl.html). This is free software: you are free to change and redistribute it.
