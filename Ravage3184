@@ -1,16 +1,13 @@
 is_tlsv1_3_h2() {
-  local check_url=$(sed -e 's/^https:\/\///' -e 's/^http:\/\///' -e 's/\/.*$//' 2>/dev/null | grep -oE '[^/]+\.[^/]+$' | head -n 1)
-  while read -r url; do
-    local check_output=$(echo QUIT | stdbuf -oL openssl s_client -connect "${url}:443" -tls1_3 -alpn h2 -debug -status 2>&1)
+  for url in "${@}"; do
+    local check_url=$(echo "${url}" | sed -e 's/^https:\/\///' -e 's/^http:\/\///' -e 's/\/.*$//' 2>/dev/null | grep -oE '[^/]+\.[^/]+$' | head -n 1)
+    local check_output=$(echo QUIT | stdbuf -oL openssl s_client -connect "${check_url}:443" -tls1_3 -alpn h2 -debug -status 2>&1)
     local tls=$(echo "${check_output}" | grep -Eoi 'TLSv1.[23]')
     local alpn=$(echo "${check_output}" | grep -Eoi '^ALPN\s+protocol:\s+h2$')
     local x25519=$(echo "${check_output}" | grep -Eoi '^Server\s+Temp\s+Key:\s+X25519')
     local ocsp=$(echo "${check_output}" | grep -Eoi '^OCSP\s+response:')
     if [[ -n ${tls} && -n ${alpn} && -n ${x25519} && -n ${ocsp} ]]; then
-      echo "${url}: TLSv1.3, HTTP/2, X25519, and OCSP are supported"
+      echo "${check_url}: TLSv1.3, HTTP/2, X25519, and OCSP are supported"
     fi
   done
 }
-
-# Usage example:
-cat urls.txt | is_tlsv1_3_h2
