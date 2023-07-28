@@ -1,6 +1,6 @@
 Here's the markdown:
 
-```
+
 ## Code.sh
 
 This is a bash script that defines two functions: `check_url` and `is_tlsv1_3_h2`. These functions are used to check if a URL supports specific security protocols, such as TLS 1.3, HTTP/2, X25519 and OCSP. The functions use `parallel` to run the checks for multiple URLs in parallel and create a log file named `joblog.txt`.
