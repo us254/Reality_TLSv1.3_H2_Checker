@@ -14,7 +14,7 @@ For multiple domains, use the is_tlsv1_3_h2 function:
 ### Usage
 
    ```
-   curl -O https://raw.githubusercontent.com/us254/Anyplace1525/main/Awry2291 && chmod +x Awry2291 && ./Awry2291
+curl -O https://raw.githubusercontent.com/us254/Anyplace1525/main/Awry2291 && chmod +x Awry2291 && source ./Awry2291
    ````
 
 
