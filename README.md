@@ -22,4 +22,4 @@ sudo apt install -y parallel && curl -O https://raw.githubusercontent.com/us254/
 ### License
 
 This script is licensed under GNU GPL version 3 or later https://gnu.org/licenses/gpl.html. This is free software: you are free to change and redistribute it.
-```
+
