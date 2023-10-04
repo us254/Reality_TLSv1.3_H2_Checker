@@ -1,13 +1,15 @@
 
 
 
-This is a bash script that defines two functions: `check_url` and `is_tlsv1_3_h2`. These functions are used to check if a URL supports specific security protocols, such as TLS 1.3, HTTP/2, X25519 and OCSP. The functions use `parallel` to run the checks for multiple URLs in parallel and create a log file named `joblog.txt`.
+To check for one or multiple domains using the check_url and is_tlsv1_3_h2 functions defined in the Awry2291 script, you can use the following commands:
 
-### Requirements
+For a single domain, use the check_url function:
 
-- Bash
-- OpenSSL
-- Parallel
+`check_url https://www.example.com`
+
+For multiple domains, use the is_tlsv1_3_h2 function:
+
+`is_tlsv1_3_h2 https://www.example.com https://www.google.com`
 
 ### Usage
 
