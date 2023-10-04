@@ -3,11 +3,5 @@
 # Download the function file from the GitHub repository
 curl https://raw.githubusercontent.com/us254/Anyplace1525/main/Ravage3184 -o ~/Ravage3184
 
-# Append the function definition to the end of the .bashrc file
-cat ~/Ravage3184 >> ~/.bashrc
-
-# Reload the shell profile
-source ~/.bashrc
-
-# Remove the temporary function file
-rm ~/Ravage3184
+# Source the function definitions into the current shell
+source ~/Ravage3184
