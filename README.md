@@ -11,10 +11,10 @@ These instructions will get you a copy of the script up and running on your loca
 You will need the following installed on your system:
 
 - `bash` shell (typically pre-installed on most UNIX environments)
-- `curl`
+- `curl` `sudo apt-get install curl`
 - `grep`
-- `openssl`
-- `parallel` (GNU Parallel)
+- `openssl` `sudo apt-get install openssl`
+- `parallel` (GNU Parallel) `sudo apt-get install parallel`
 
 Also, ensure the script has permissions to execute:
 
