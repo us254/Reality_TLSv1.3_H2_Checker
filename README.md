@@ -1,25 +1,23 @@
+# MergedScript Usage Documentation
 
+## Introduction
+This document provides instructions on how to use the `MergedScript.sh` script, which is designed to check if a list of domains supports TLSv1.3, HTTP/2, X25519, and OCSP. The script uses parallel processing to check multiple domains efficiently.
 
+## Prerequisites
+Before running `MergedScript.sh`, ensure you have the following installed:
 
-To check for one or multiple domains using the check_url and is_tlsv1_3_h2 functions defined in the Awry2291 script, you can use the following commands:
-
-For a single domain, use the check_url function:
-
-`check_url example.com`
-
-For multiple domains, use the is_tlsv1_3_h2 function:
-
-`is_tlsv1_3_h2 www.yahoo.com google.com`
-
-### Usage
-
+## Installation
+To use `MergedScript.sh`, follow these steps:
+1. Download the script to your local machine:
    ```
-sudo apt install -y parallel && curl -O https://raw.githubusercontent.com/us254/Anyplace1525/main/Awry2291 && chmod +x Awry2291 && source ./Awry2291 && export -f check_url
+   curl -O https://raw.githubusercontent.com/us254/Anyplace1525/main/MergedScript.sh
+   ```
+2. Make the script executable:
+   ```
+   chmod +x MergedScript.sh
+   ```
 
-   ````
+## Usage
+To check domains using `MergedScript.sh`, you can run the following commands:
 
-
-### License
-
-This script is licensed under GNU GPL version 3 or later https://gnu.org/licenses/gpl.html. This is free software: you are free to change and redistribute it.
-
+For a single domain:
