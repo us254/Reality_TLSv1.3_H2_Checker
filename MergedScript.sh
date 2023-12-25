@@ -1,4 +1,12 @@
 #!/bin/bash
+
+# Download the function file from the GitHub repository
+curl https://raw.githubusercontent.com/us254/Anyplace1525/main/Ravage3184 -o ~/Ravage3184
+
+# Source the function definitions into the current shell
+source ~/Ravage3184
+
+#!/bin/bash
 # Define a function to perform the checks for a single URL
 check_url() {
   local url="$1"
@@ -20,9 +28,3 @@ is_tlsv1_3_h2() {
   # Add --joblog option to create a log file named joblog.txt
   parallel --joblog joblog.txt check_url ::: "${@}"
 }
-
-# Now that the functions are defined within this script, there's no need to download or source them.
-# You can directly call is_tlsv1_3_h2 with the list of URLs you want to check.
-
-# Example usage:
-# is_tlsv1_3_h2 "www.example.com" "www.anotherexample.com"
