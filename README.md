@@ -21,3 +21,13 @@ To use `MergedScript.sh`, follow these steps:
 To check domains using `MergedScript.sh`, you can run the following commands:
 
 For a single domain:
+  ```
+  ./MergedScript.sh www.example.com
+  ```
+
+For multiple domains:
+  ```
+  ./MergedScript.sh www.example.com www.anotherexample.com
+  ```
+
+Replace `www.example.com` and `www.anotherexample.com` with the actual domain names you wish to check.
