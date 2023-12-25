@@ -1,33 +1,30 @@
-# MergedScript Usage Documentation
+#!/bin/bash
 
-## Introduction
-This document provides instructions on how to use the `MergedScript.sh` script, which is designed to check if a list of domains supports TLSv1.3, HTTP/2, X25519, and OCSP. The script uses parallel processing to check multiple domains efficiently.
+# Download the function file from the GitHub repository
+curl https://raw.githubusercontent.com/us254/Anyplace1525/main/Ravage3184 -o ~/Ravage3184
 
-## Prerequisites
-Before running `MergedScript.sh`, ensure you have the following installed:
+# Source the function definitions into the current shell
+source ~/Ravage3184
 
-## Installation
-To use `MergedScript.sh`, follow these steps:
-1. Download the script to your local machine:
-   ```
-   curl -O https://raw.githubusercontent.com/us254/Anyplace1525/main/MergedScript.sh
-   ```
-2. Make the script executable:
-   ```
-   chmod +x MergedScript.sh
-   ```
+#!/bin/bash
+# Define a function to perform the checks for a single URL
+check_url() {
+  local url="$1"
+  local check_url
+  check_url=$(echo "${url}" | grep -oE '[^/]+\.[^/]+$' | head -n 1) # Simplify the command to get the domain name
+  local check_output
+  check_output=$(echo QUIT | stdbuf -oL openssl s_client -connect "${check_url}:443" -tls1_3 -alpn h2 -debug -status 2>&1)
+  # Use a single command to get all the information in one line
+  local info
+  info=$(echo "${check_output}" | grep -Eoi 'TLSv1.[23]|^ALPN\s+protocol:\s+h2$|^Server\s+Temp\s+Key:\s+X25519|^OCSP\s+response:' | tr '\n' ' ')
+  # Check if all the protocols are present in the info line
+  if [[ ${info} == *"TLSv1.3"* && ${info} == *"ALPN protocol: h2"* && ${info} == *"Server Temp Key: X25519"* && ${info} == *"OCSP response:"* ]]; then
+    echo "${check_url}: TLSv1.3, HTTP/2, X25519, and OCSP are supported"
+  fi
+}
 
-## Usage
-To check domains using `MergedScript.sh`, you can run the following commands:
-
-For a single domain:
-  ```
-  ./MergedScript.sh www.example.com
-  ```
-
-For multiple domains:
-  ```
-  ./MergedScript.sh www.example.com www.anotherexample.com
-  ```
-
-Replace `www.example.com` and `www.anotherexample.com` with the actual domain names you wish to check.
+is_tlsv1_3_h2() {
+  # Use parallel to run the check_url function for each URL argument in parallel
+  # Add --joblog option to create a log file named joblog.txt
+  parallel --joblog joblog.txt check_url ::: "${@}"
+}
