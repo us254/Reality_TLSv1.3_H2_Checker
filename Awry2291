@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Download the function file from the GitHub repository
-curl https://raw.githubusercontent.com/us254/Anyplace1525/main/Ravage3184 -o ~/Ravage3184
-
-# Source the function definitions into the current shell
-source ~/Ravage3184
